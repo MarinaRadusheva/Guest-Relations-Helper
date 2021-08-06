@@ -10,10 +10,8 @@ namespace GuestRelationsHelper.Data.Models
 
         [Required]
         [MaxLength(VillaNumberMaxLength)]
+
         public string VillaNumber { get; init; }
 
-        public int Bedrooms { get; init; }
-
-        public ResortSection Section { get; init; }
     }
 }

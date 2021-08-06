@@ -5,5 +5,9 @@
         public const int VillaNumberMaxLength = 3;
         public const int MinBedrooms = 1;
         public const int MaxBedrooms = 2;
+        public const int ReservationPasswordLength = 7;
+        public const int CategoryNameMaxLength = 30;
+        public const int ServiceNameMaxLength = 100;
+        public const int RequestStatusMaxLength = 20;
     }
 }

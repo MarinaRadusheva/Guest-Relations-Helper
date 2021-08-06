@@ -1,0 +1,79 @@
+[
+    {
+        "Name": "Rombo",
+        "SubCategoryId": 0
+    },
+    {
+        "Name": "Panorama",
+        "SubCategoryId": 0
+    },
+    {
+        "Name": "V Bar",
+        "SubCategoryId": 0
+    },
+    {
+        "Name": "Breakfast",
+        "SubCategoryId": 1
+    },
+    {
+        "Name": "Main Menu",
+        "SubCategoryId": 1,
+        "Price": 10
+    },
+    {
+        "Name": "Regular Cleaning",
+        "SubCategoryId": 2
+    },
+    {
+        "Name": "Towell change",
+        "SubCategoryId": 2
+    },
+    {
+        "Name": "Turndown",
+        "SubCategoryId": 3
+    },
+    {
+        "Name": "Escort from your villa",
+        "SubCategoryId": 4
+    },
+    {
+        "Name": "Main pool",
+        "SubCategoryId": 4
+    },
+    {
+        "Name": "Escort from SPA center",
+        "SubCategoryId": 4
+    },
+    {
+        "Name": "Escort from Rombo",
+        "SubCategoryId": 4
+    },
+    {
+        "Name": "Escort from Panorama",
+        "SubCategoryId": 4
+    },
+    {
+        "Name": "Escort from V-Bar",
+        "SubCategoryId": 4
+    },
+    {
+        "Name": "Airport Varna (round trip)",
+        "SubCategoryId": 5,
+        "Price": 180
+    },
+    {
+        "Name": "Airport Varna (one-way)",
+        "SubCategoryId": 5,
+        "Price" = 100
+    },
+    {
+        "Name": "Airport Burgas (round trip)",
+        "SubCategoryId": 5,
+        "Price": 150
+    },
+    {
+        "Name": "Airport Burgas (one-way)",
+        "SubCategoryId": 5,
+        "Price": 80
+    },
+]

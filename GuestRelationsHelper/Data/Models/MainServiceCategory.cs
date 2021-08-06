@@ -1,15 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using static GuestRelationsHelper.Data.DataConstants;
+
 namespace GuestRelationsHelper.Data.Models
 {
-    public class HotelService
+    public class MainServiceCategory
     {
         public int Id { get; init; }
-        [Required]
-        public string Name { get; init; }
-        public decimal? Price { get; init; }
-        public int SubCategoryId { get; set; }
-        public SubCategory SubCategory { get; set; }
 
+        [Required]
+        [MaxLength(CategoryNameMaxLength)]
+        public string Name { get; init; }
     }
 }
