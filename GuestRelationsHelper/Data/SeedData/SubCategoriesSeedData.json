@@ -1,33 +1,33 @@
 [
     {
-        "Id": 0,
+
         "Name": "Reservations",
-        "MainServiceCategoryId": 0
+        "MainCategory": "Dining"
     },
     {
-        "Id": 1,
+
         "Name": "Room Service",
-        "MainServiceCategoryId": 0
+        "MainCategory": "Dining"
     },
     {
-        "Id": 2,
+
         "Name": "Cleaning service",
-        "MainServiceCategoryId": 1
+        "MainCategory": "Housekeeping"
     },
     {
-        "Id": 3,
+
         "Name": "Turndown service",
-        "MainServiceCategoryId": 1
+        "MainCategory": "Housekeeping"
     },
     {
-        "Id": 4,
+
         "Name": "Escort",
-        "MainServiceCategoryId": 2
+        "MainCategory": "Transport"
     },
     {
-        "Id": 5,
+
         "Name": "Transfer",
-        "MainServiceCategoryId": 2
+        "MainCategory": "Transport"
     }
 
 ]

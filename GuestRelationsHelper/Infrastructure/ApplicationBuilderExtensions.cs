@@ -17,9 +17,14 @@ namespace GuestRelationsHelper.Infrastructure
         {
             using var serviceScope = app.ApplicationServices.CreateScope();
             var services = serviceScope.ServiceProvider;
+
             MigrateDatabase(services);
             SeedAdministrator(services);
             SeedVillas(services);
+            SeedMainCategories(services);
+            SeedSubCategories(services);
+            SeedServices(services);
+
             return app;
         }
 
@@ -34,38 +39,52 @@ namespace GuestRelationsHelper.Infrastructure
         {
             var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+            var context = services.GetRequiredService<GRHelperDbContext>();
             Task.Run(async () =>
             {
+                var role = new IdentityRole { Name = AdministratorRoleName };
+
                 if (!await roleManager.RoleExistsAsync(AdministratorRoleName))
                 {
-                    return;
+                    await roleManager.CreateAsync(role);
                 }
-                var role = new IdentityRole { Name = AdministratorRoleName };
-                await roleManager.CreateAsync(role);
 
                 const string adminEmail = "master@gr.com";
                 const string adminPass = "admin123";
 
-                var admin = new IdentityUser
+                if (!context.Users.Any(u=>u.Email==adminEmail))
                 {
-                    Email = adminEmail,
-                    UserName = adminEmail
-                };
-
-                await userManager.CreateAsync(admin, adminPass);
-                await userManager.AddToRoleAsync(admin, AdministratorRoleName);
+                    var admin = new IdentityUser
+                    {
+                        Email = adminEmail,
+                        UserName = adminEmail
+                    };
+                    await userManager.CreateAsync(admin, adminPass);
+                    await userManager.AddToRoleAsync(admin, role.Name);
+                }
             })
                 .GetAwaiter()
                 .GetResult();
         }
         private static void SeedVillas(IServiceProvider services)
         {
-            var context = services.GetRequiredService<GRHelperDbContext>();
-            if (!context.Villas.Any())
-            {
-
-            }
+                var context = services.GetRequiredService<GRHelperDbContext>();
+                Task.Run(async () => { await DataInitializer.SeedVillas(context); }).GetAwaiter().GetResult();
         }
-
+        private static void SeedMainCategories(IServiceProvider services)
+        {
+            var context = services.GetRequiredService<GRHelperDbContext>();
+            Task.Run(async () => { await DataInitializer.SeedCategories(context); }).GetAwaiter().GetResult();
+        }
+        private static void SeedSubCategories(IServiceProvider services)
+        {
+            var context = services.GetRequiredService<GRHelperDbContext>();
+            Task.Run(async () => { await DataInitializer.SeedSubCategories(context); }).GetAwaiter().GetResult();
+        }
+        private static void SeedServices(IServiceProvider services)
+        {
+            var context = services.GetRequiredService<GRHelperDbContext>();
+            Task.Run(async () => { await DataInitializer.SeedServices(context); }).GetAwaiter().GetResult();
+        }
     }
 }

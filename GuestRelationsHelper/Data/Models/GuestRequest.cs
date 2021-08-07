@@ -5,6 +5,7 @@ namespace GuestRelationsHelper.Data.Models
     public class GuestRequest
     {
         public int Id { get; init; }
+        public int ReservationId { get; init; }
         public Reservation Reservation { get; init; }
         public HotelService HotelService { get; init; }
         public DateTime? Date { get; set; }

@@ -1,15 +1,15 @@
 [
 
     {
-        "Id": 0,
+
         "Name": "Dining"
     },
     {
-        "Id": 1,
+
         "Name": "Housekeeping"
     },
     {
-        "Id": 2,
+
         "Name": "Transport"
     }
 ]

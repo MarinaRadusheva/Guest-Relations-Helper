@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using static GuestRelationsHelper.Data.DataConstants;
 
 namespace GuestRelationsHelper.Data.Models
@@ -12,5 +13,6 @@ namespace GuestRelationsHelper.Data.Models
         public string Name { get; init; }
         public int MainServiceCategoryId { get; init; }
         public MainServiceCategory MainServiceCategory { get; init; }
+        public virtual ICollection<HotelService> HotelServices { get; set; }
     }
 }

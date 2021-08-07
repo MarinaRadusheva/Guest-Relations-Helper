@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 using static GuestRelationsHelper.Data.DataConstants;
 
@@ -11,5 +12,6 @@ namespace GuestRelationsHelper.Data.Models
         [Required]
         [MaxLength(CategoryNameMaxLength)]
         public string Name { get; init; }
+        public ICollection<SubCategory> SubCategories { get; set; }
     }
 }

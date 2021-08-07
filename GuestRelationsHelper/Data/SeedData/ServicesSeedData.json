@@ -1,79 +1,79 @@
 [
     {
         "Name": "Rombo",
-        "SubCategoryId": 0
+        "SubCategory": "Reservations"
     },
     {
         "Name": "Panorama",
-        "SubCategoryId": 0
+        "SubCategory": "Reservations"
     },
     {
         "Name": "V Bar",
-        "SubCategoryId": 0
+        "SubCategory": "Reservations"
     },
     {
         "Name": "Breakfast",
-        "SubCategoryId": 1
+        "SubCategory": "Room Service"
     },
     {
         "Name": "Main Menu",
-        "SubCategoryId": 1,
+        "SubCategory": "Room Service",
         "Price": 10
     },
     {
         "Name": "Regular Cleaning",
-        "SubCategoryId": 2
+        "SubCategory": "Cleaning service"
     },
     {
         "Name": "Towell change",
-        "SubCategoryId": 2
+        "SubCategory": "Cleaning service"
     },
     {
         "Name": "Turndown",
-        "SubCategoryId": 3
+        "SubCategory": "Turndown service"
     },
     {
-        "Name": "Escort from your villa",
-        "SubCategoryId": 4
+        "Name": "From your villa",
+        "SubCategory": "Escort"
     },
     {
-        "Name": "Main pool",
-        "SubCategoryId": 4
+        "Name": "From Main pool",
+        "SubCategory": "Escort"
     },
     {
-        "Name": "Escort from SPA center",
-        "SubCategoryId": 4
+        "Name": "From SPA center",
+        "SubCategory": "Escort"
     },
     {
-        "Name": "Escort from Rombo",
-        "SubCategoryId": 4
+        "Name": "From Rombo",
+        "SubCategory": "Escort"
     },
     {
-        "Name": "Escort from Panorama",
-        "SubCategoryId": 4
+        "Name": "From Panorama",
+        "SubCategory": "Escort"
     },
     {
-        "Name": "Escort from V-Bar",
-        "SubCategoryId": 4
+        "Name": "From V-Bar",
+        "SubCategory": "Escort"
     },
     {
         "Name": "Airport Varna (round trip)",
-        "SubCategoryId": 5,
+        "SubCategory": "Transfer",
         "Price": 180
     },
     {
         "Name": "Airport Varna (one-way)",
-        "SubCategoryId": 5,
-        "Price" = 100
+        "SubCategory": "Transfer",
+        "Price": 100
     },
     {
         "Name": "Airport Burgas (round trip)",
-        "SubCategoryId": 5,
+        "SubCategory": "Transfer",
         "Price": 150
     },
     {
         "Name": "Airport Burgas (one-way)",
-        "SubCategoryId": 5,
+        "SubCategory": "Transfer",
         "Price": 80
-    },
+    }
 ]

@@ -1,4 +1,5 @@
-﻿using GuestRelationsHelper.Data.Models;
+﻿using GuestRelationsHelper.Data.Dto;
+using GuestRelationsHelper.Data.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
@@ -37,11 +38,32 @@ namespace GuestRelationsHelper.Data
             {
                 //TODO - make relative path
                 string subCategoriesJson = File.ReadAllText(@"C:\Users\Marina\source\repos\ASP.NET Core Web Project\Guest-Relations-Helper\GuestRelationsHelper\Data\SeedData\" + "SubCategoriesSeedData.json");
-                List<SubCategory> subCategories = JsonConvert.DeserializeObject<List<SubCategory>>(subCategoriesJson);
+                List<SubCategory> subCategories = JsonConvert.DeserializeObject<List<SubCategoryDto>>(subCategoriesJson)
+                    .Select(x => new SubCategory
+                    {
+                        Name = x.Name,
+                        MainServiceCategory = context.MainServiceCategories.FirstOrDefault(c => c.Name == x.MainCategory)
+                    })
+                    .ToList();
                 await context.AddRangeAsync(subCategories);
                 await context.SaveChangesAsync();
             }
         }
-
+        public static async Task SeedServices(GRHelperDbContext context)
+        {
+            if (!context.HotelServices.Any())
+            {
+                //TODO - make relative path
+                string servicesJson = File.ReadAllText(@"C:\Users\Marina\source\repos\ASP.NET Core Web Project\Guest-Relations-Helper\GuestRelationsHelper\Data\SeedData\" + "ServicesSeedData.json");
+                List<HotelService> hotelServices = JsonConvert.DeserializeObject<List<HotelServiceDto>>(servicesJson).Select(x => new HotelService
+                {
+                    Name = x.Name,
+                    SubCategory = context.SubCategories.FirstOrDefault(c => c.Name == x.SubCategory),
+                    Price = x.Price
+                }).ToList();
+                await context.AddRangeAsync(hotelServices);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }
