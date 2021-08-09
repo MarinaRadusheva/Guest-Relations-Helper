@@ -1,6 +1,7 @@
 using GuestRelationsHelper.Data;
 using GuestRelationsHelper.Infrastructure;
 using GuestRelationsHelper.Services.Requests;
+using GuestRelationsHelper.Services.Reservations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -45,6 +46,7 @@ namespace GuestRelationsHelper
                     options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
                 });
             services.AddTransient<IRequestService, RequestService>();
+            services.AddTransient<IReservationService, ReservationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

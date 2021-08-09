@@ -1,1 +1,39 @@
 ﻿
+@model IEnumerable<ReservationSeviceModel>
+
+@{
+    ViewBag.Title = "Reservations Administration";
+}
+
+<nav>
+    
+            <h1 class="d-lg-inline-flex">All Reservations</h1>
+        
+            <a href="/Admin/Reservations/Add" class="btn btn-info d-lg-inline-flex float-right"> Create New</a>
+
+</nav>
+<br />
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Villa</th>
+            <th scope="col">Check-In</th>
+            <th scope="col">Requests</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model)
+        {
+            <tr>
+                <td scope="col">@reservation.Villa</td>
+                <td scope="col">@reservation.CheckIn</td>
+                <td scope="col">@reservation.RequestsCount</td>
+                <td scope="col">
+                    <a asp-area="" asp-controller="Reservations" asp-action="Edit" asp-route-id="@reservation.Id" class="btn btn-info float-right ml-3">"Edit"</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
