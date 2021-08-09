@@ -1,4 +1,5 @@
 ﻿using GuestRelationsHelper.Services.Reservations.Models;
+using System;
 using System.Collections.Generic;
 
 namespace GuestRelationsHelper.Services.Reservations
@@ -7,5 +8,7 @@ namespace GuestRelationsHelper.Services.Reservations
     {
         IEnumerable<ReservationSeviceModel> All();
         IEnumerable<VillaServiceModel> AllVillas();
+        int Add(DateTime checkIn, DateTime checkOut, int guestCount, int villaId);
+        string GetPassword(int reservationId);
     }
 }

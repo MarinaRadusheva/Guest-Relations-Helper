@@ -1,7 +1,10 @@
 ﻿using GuestRelationsHelper.Areas.Admin.Models;
 using GuestRelationsHelper.Services.Reservations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+
+using static GuestRelationsHelper.WebConstants;
 
 namespace GuestRelationsHelper.Areas.Admin.Controllers
 {
@@ -20,6 +23,7 @@ namespace GuestRelationsHelper.Areas.Admin.Controllers
             return this.View(allReservations);
         }
 
+        [Authorize]
         public IActionResult Add()
         {
             return this.View(new ReservationFormModel
@@ -28,6 +32,30 @@ namespace GuestRelationsHelper.Areas.Admin.Controllers
                 CheckOut=DateTime.UtcNow.AddDays(1).Date,
                 Villas = this.reservations.AllVillas()
             }) ;
+        }
+
+        
+        [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult Add(ReservationFormModel reservation)
+        {
+            if (!ModelState.IsValid)
+            {
+                reservation.Villas = this.reservations.AllVillas();
+                return View(reservation);
+            }
+
+            var reservationId = this.reservations.Add(
+                reservation.CheckIn, 
+                reservation.CheckOut, 
+                reservation.GuestsCount, 
+                reservation.VillaId);
+
+            string password = this.reservations.GetPassword(reservationId);
+
+            TempData[GlobalMessageKey] = $"The reservation was added. Password is {password}";
+
+            return RedirectToAction(nameof(All));
         }
     }
 }

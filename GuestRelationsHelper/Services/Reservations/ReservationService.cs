@@ -1,4 +1,5 @@
 ﻿using GuestRelationsHelper.Data;
+using GuestRelationsHelper.Data.Models;
 using GuestRelationsHelper.Services.Reservations.Models;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace GuestRelationsHelper.Services.Reservations
                     CheckIn = x.CheckIn,
                     RequestsCount = x.GuestRequests.Count()
                 })
+                .OrderBy(x=>x.CheckIn)
                 .ToList();
             return allReservations;
         }
@@ -39,6 +41,29 @@ namespace GuestRelationsHelper.Services.Reservations
                 })
                 .OrderBy(x=>x.VillaNumber.Substring(0,1))
                 .ToList();
+        }
+
+        public int Add(DateTime checkIn, DateTime checkOut, int guestCount, int villaId)
+        {
+            var newReservation = new Reservation
+            {
+                CheckIn = checkIn,
+                CheckOut = checkOut,
+                GuestsCount = guestCount,
+                VillaId = villaId,
+
+            };
+
+            this.data.Reservations.Add(newReservation);
+            this.data.SaveChanges();
+
+            return newReservation.Id;
+        }
+
+        public string GetPassword(int reservationId)
+        {
+            var reservation = this.data.Reservations.Find(reservationId);
+            return reservation.Password;
         }
     }
 }
