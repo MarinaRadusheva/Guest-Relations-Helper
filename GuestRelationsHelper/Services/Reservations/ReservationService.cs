@@ -25,6 +25,8 @@ namespace GuestRelationsHelper.Services.Reservations
                     Id = x.Id,
                     Villa = x.Villa.VillaNumber,
                     CheckIn = x.CheckIn,
+                    CheckOut=x.CheckOut,
+                    GuestsCount=x.GuestsCount,
                     RequestsCount = x.GuestRequests.Count()
                 })
                 .OrderBy(x=>x.CheckIn)
@@ -64,6 +66,35 @@ namespace GuestRelationsHelper.Services.Reservations
         {
             var reservation = this.data.Reservations.Find(reservationId);
             return reservation.Password;
+        }
+
+        public ReservationEditServiceModel GetReservation(int id)
+        {
+            var reservation = this.data.Reservations.Where(x => x.Id == id).Select(x => new ReservationEditServiceModel
+            {
+                Id = x.Id,
+                CheckIn = x.CheckIn,
+                CheckOut = x.CheckOut,
+                Villa = x.Villa.VillaNumber,
+                GuestsCount = x.GuestsCount,
+            }).FirstOrDefault();
+            return reservation;
+        }
+
+        public bool Edited (int id, DateTime checkIn, DateTime checkOut, int guestsCount, int villaId)
+        {
+            var reservation = this.data.Reservations.Find(id);
+            if (reservation==null)
+            {
+                return false;
+            }
+            reservation.CheckIn = checkIn;
+            reservation.CheckOut = checkOut;
+            reservation.GuestsCount = guestsCount;
+            reservation.VillaId = villaId;
+
+            this.data.SaveChanges();
+            return true;
         }
     }
 }

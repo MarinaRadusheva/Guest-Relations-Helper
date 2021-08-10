@@ -23,7 +23,7 @@ namespace GuestRelationsHelper.Areas.Admin.Controllers
             return this.View(allReservations);
         }
 
-        [Authorize]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Add()
         {
             return this.View(new ReservationFormModel
@@ -55,6 +55,39 @@ namespace GuestRelationsHelper.Areas.Admin.Controllers
 
             TempData[GlobalMessageKey] = $"The reservation was added. Password is {password}";
 
+            return RedirectToAction(nameof(All));
+        }
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult Edit(int id)
+        {
+            var reservation = this.reservations.GetReservation(id);
+            var reservationFormModel = new ReservationFormModel
+            {
+                CheckIn = reservation.CheckIn,
+                CheckOut = reservation.CheckOut,
+                Villa = reservation.Villa,
+                GuestsCount = reservation.GuestsCount,
+
+            };
+            reservationFormModel.Villas = this.reservations.AllVillas();
+            return View(reservationFormModel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult Edit(int id, ReservationFormModel reservation)
+        {
+            if (!ModelState.IsValid)
+            {
+                reservation.Villas = this.reservations.AllVillas();
+                return View(reservation);
+            }
+            var edited = this.reservations.Edited(id, reservation.CheckIn, reservation.CheckOut, reservation.GuestsCount, reservation.VillaId);
+            if (!edited)
+            {
+                return BadRequest();
+            }
+            TempData[GlobalMessageKey] = "Changes to the reservation have been applied";
             return RedirectToAction(nameof(All));
         }
     }

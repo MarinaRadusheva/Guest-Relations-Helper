@@ -19,6 +19,8 @@
         <tr>
             <th scope="col">Villa</th>
             <th scope="col">Check-In</th>
+            <th scope="col">Check-Out</th>
+            <th scope="col">Guests</th>
             <th scope="col">Requests</th>
             <th scope="col"></th>
         </tr>
@@ -26,14 +28,16 @@
     <tbody>
         @foreach (var reservation in Model)
         {
-            <tr>
-                <td scope="col">@reservation.Villa</td>
-                <td scope="col">@reservation.CheckIn</td>
-                <td scope="col">@reservation.RequestsCount</td>
-                <td scope="col">
-                    <a asp-area="" asp-controller="Reservations" asp-action="Edit" asp-route-id="@reservation.Id" class="btn btn-info float-right ml-3">"Edit"</a>
-                </td>
-            </tr>
+        <tr>
+            <td scope="col">@reservation.Villa</td>
+            <td scope="col">@reservation.CheckIn.ToString("dd/MM/yyyy")</td>
+            <td scope="col">@reservation.CheckOut.ToString("dd/MM/yyyy")</td>
+            <td scope="col">@reservation.GuestsCount</td>
+            <td scope="col">@reservation.RequestsCount</td>
+            <td scope="col">
+                <a asp-area="Admin" asp-controller="Reservations" asp-action="Edit" asp-route-id="@reservation.Id" class="btn btn-info float-right ml-3">Edit</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
