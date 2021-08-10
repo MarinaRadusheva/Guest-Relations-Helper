@@ -33,7 +33,8 @@
             <td scope="col">@reservation.CheckIn.ToString("dd/MM/yyyy")</td>
             <td scope="col">@reservation.CheckOut.ToString("dd/MM/yyyy")</td>
             <td scope="col">@reservation.GuestsCount</td>
-            <td scope="col">@reservation.RequestsCount</td>
+            <td scope="col">
+                <a asp-area="Admin" asp-controller="Requests" asp-action="AllByReservation" asp-route-id="@reservation.Id" class="btn btn-info">@reservation.RequestsCount</a></td>
             <td scope="col">
                 <a asp-area="Admin" asp-controller="Reservations" asp-action="Edit" asp-route-id="@reservation.Id" class="btn btn-info float-right ml-3">Edit</a>
             </td>

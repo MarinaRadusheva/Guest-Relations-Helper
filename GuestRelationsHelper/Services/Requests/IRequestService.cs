@@ -6,5 +6,6 @@ namespace GuestRelationsHelper.Services.Requests
     public interface IRequestService
     {
         IEnumerable<RequestServiceModel> All();
+        IEnumerable<RequestServiceModel> All(int id);
     }
 }

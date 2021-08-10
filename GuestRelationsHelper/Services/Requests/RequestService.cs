@@ -19,13 +19,30 @@ namespace GuestRelationsHelper.Services.Requests
                 .Where(x => x.Date > DateTime.UtcNow.AddDays(-1))
                 .Select(x => new RequestServiceModel
                 {
-                    Id=x.Id,
+                    Id = x.Id,
                     ServiceName = x.HotelService.Name,
                     VillaNumber = x.Reservation.Villa.VillaNumber,
                     Date = x.Date,
                     Time = x.Time,
                     Status = x.RequestStatus.ToString()
                 }).ToList();
+            return requests;
+        }
+
+        public IEnumerable<RequestServiceModel> All(int id)
+        {
+            var requests = this.data.GuestRequests
+                .Where(x => x.ReservationId == id)
+                .Select(x => new RequestServiceModel
+                {
+                    Id = x.Id,
+                    ServiceName = x.HotelService.Name,
+                    VillaNumber = x.Reservation.Villa.VillaNumber,
+                    Date = x.Date,
+                    Time = x.Time,
+                    Status = x.RequestStatus.ToString()
+                })
+                .ToList();
             return requests;
         }
     }
