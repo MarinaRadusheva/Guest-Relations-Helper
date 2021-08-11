@@ -26,12 +26,7 @@
                 <a class="nav-link text-dark" asp-area="" asp-controller="Requests" asp-action="All">Requests</a>
             </li>
         }
-         else if(!userIsGuest && !userIsAdmin)
-        {
-            <div>
-                <a class=" btn btn-info col-md-3" asp-area="" asp-controller="Guests" asp-action="Register"> Enter Your Reservation Details</a>
-            </div>
-        }
+
 
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>

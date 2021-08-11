@@ -11,10 +11,10 @@ namespace GuestRelationsHelper.Services.Guests
     public class GuestService : IGuestService
     {
         private readonly GRHelperDbContext data;
-        private readonly ReservationService reservations;
-        private UserManager<IdentityUser> userManager;
+        private readonly IReservationService reservations;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public GuestService(GRHelperDbContext data, ReservationService reservations, UserManager<IdentityUser> userManager)
+        public GuestService(GRHelperDbContext data, IReservationService reservations, UserManager<IdentityUser> userManager)
         {
             this.data = data;
             this.reservations = reservations;

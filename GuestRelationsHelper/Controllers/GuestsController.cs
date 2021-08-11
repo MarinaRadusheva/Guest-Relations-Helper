@@ -1,20 +1,23 @@
-﻿using GuestRelationsHelper.Services.Guests;
+﻿using GuestRelationsHelper.Models.Guests;
+using GuestRelationsHelper.Services.Guests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GuestRelationsHelper.Controllers
 {
     public class GuestsController : Controller
     {
-        private readonly GuestService guests;
+        private readonly IGuestService guests;
 
-        public GuestsController(GuestService guests)
+        public GuestsController(IGuestService guests)
         {
             this.guests = guests;
         }
 
-        //public IActionResult Register()
-        //{
-
-        //}
+        [Authorize]
+        public IActionResult Register(string userId)
+        {
+            return View(new RegisterGuestViewModel());
+        }
     }
 }

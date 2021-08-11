@@ -1,6 +1,6 @@
 ﻿namespace GuestRelationsHelper.Services.Guests
 {
-    interface IGuestService
+    public interface IGuestService
     {
 
         bool IsGuest(string Id);

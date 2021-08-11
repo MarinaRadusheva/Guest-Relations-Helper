@@ -15,7 +15,7 @@ namespace GuestRelationsHelper.Data.Models
         [MaxLength(LastNameMaxLength)]
         public string LastName { get; set; }
         [Required]
-        [MaxLength()]
+        [MaxLength(PhoneMaxLength)]
         public string PnoneNumber { get; set; }
         public int ReservationId { get; init; }
         public virtual Reservation Reservation { get; init; }
