@@ -18,5 +18,19 @@ namespace GuestRelationsHelper.Data
         public DbSet<MainServiceCategory> MainServiceCategories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Villa> Villas { get; set; }
+        public DbSet<Guest> Guests { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            //builder.Entity<Guest>()
+            //    .HasOne<IdentityUser>()
+            //    .WithOne()
+            //    .HasForeignKey<Guest>(x => x.UserId)
+            //    .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Reservation>().HasOne(x=>x.Guest).WithOne(x => x.Reservation).HasForeignKey<Guest>(x => x.ReservationId).OnDelete(DeleteBehavior.Restrict);
+
+            base.OnModelCreating(builder);
+        }
     }
 }

@@ -9,5 +9,8 @@
         public const int CategoryNameMaxLength = 30;
         public const int ServiceNameMaxLength = 100;
         public const int RequestStatusMaxLength = 20;
+        public const int LastNameMaxLength = 23;
+        public const int PhoneMaxLength = 20;
+        public const int IdMaxLength = 40;
     }
 }

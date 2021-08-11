@@ -24,10 +24,7 @@ namespace GuestRelationsHelper.Data.Models
         [Required]
         public string Password { get; init; } = GenerateReservationPassword(ReservationPasswordLength);
 
-        public string UserId { get; set; }
-
-        public virtual IdentityUser User { get; set; }
-
         public ICollection<GuestRequest> GuestRequests { get; set; } = new List<GuestRequest>();
+        public virtual Guest Guest { get; set; }
     }
 }
