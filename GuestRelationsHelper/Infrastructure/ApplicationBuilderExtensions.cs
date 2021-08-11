@@ -20,6 +20,7 @@ namespace GuestRelationsHelper.Infrastructure
 
             MigrateDatabase(services);
             SeedAdministrator(services);
+            SeedGuestRole(services);
             SeedVillas(services);
             SeedMainCategories(services);
             SeedSubCategories(services);
@@ -66,6 +67,22 @@ namespace GuestRelationsHelper.Infrastructure
                 .GetAwaiter()
                 .GetResult();
         }
+        private static void SeedGuestRole(IServiceProvider services)
+        {
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+            Task.Run(async () =>
+            {
+                var role = new IdentityRole { Name = GuestRoleName };
+
+                if (!await roleManager.RoleExistsAsync(GuestRoleName))
+                {
+                    await roleManager.CreateAsync(role);
+                }
+            })
+                .GetAwaiter()
+                .GetResult();
+        }
+            
         private static void SeedVillas(IServiceProvider services)
         {
                 var context = services.GetRequiredService<GRHelperDbContext>();

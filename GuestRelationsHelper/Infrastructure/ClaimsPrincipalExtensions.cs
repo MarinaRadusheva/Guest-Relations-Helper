@@ -10,5 +10,7 @@ namespace GuestRelationsHelper.Infrastructure
             => user.FindFirst(ClaimTypes.NameIdentifier).Value;
         public static bool IsAdmin(this ClaimsPrincipal user)
            => user.IsInRole(AdministratorRoleName);
+        public static bool IsGuest(this ClaimsPrincipal user)
+           => user.IsInRole(GuestRoleName);
     }
 }

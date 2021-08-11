@@ -1,5 +1,6 @@
 using GuestRelationsHelper.Data;
 using GuestRelationsHelper.Infrastructure;
+using GuestRelationsHelper.Services.Guests;
 using GuestRelationsHelper.Services.Requests;
 using GuestRelationsHelper.Services.Reservations;
 using Microsoft.AspNetCore.Builder;
@@ -47,6 +48,7 @@ namespace GuestRelationsHelper
                 });
             services.AddTransient<IRequestService, RequestService>();
             services.AddTransient<IReservationService, ReservationService>();
+            services.AddTransient<IGuestService, GuestService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

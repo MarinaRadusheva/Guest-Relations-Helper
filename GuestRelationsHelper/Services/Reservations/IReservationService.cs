@@ -10,6 +10,7 @@ namespace GuestRelationsHelper.Services.Reservations
         IEnumerable<VillaServiceModel> AllVillas();
         int Add(DateTime checkIn, DateTime checkOut, int guestCount, int villaId);
         string GetPassword(int reservationId);
+        int? GetByPassword(string password);
         ReservationEditServiceModel GetReservation(int id);
         bool Edited(int id, DateTime checkIn, DateTime checkOut, int guestsCount, int villaId);
     }

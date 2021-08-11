@@ -67,6 +67,19 @@ namespace GuestRelationsHelper.Services.Reservations
             var reservation = this.data.Reservations.Find(reservationId);
             return reservation.Password;
         }
+        public int? GetByPassword(string password)
+        {
+            var passwordExists = this.data.Reservations.Any(x => x.Password == password);
+            if (!passwordExists)
+            {
+                return null;
+            }
+            var reservationId = this.data.Reservations
+                .Where(x => x.Password == password)
+                .Select(x=>x.Id)
+                .FirstOrDefault();
+            return reservationId;
+        }
 
         public ReservationEditServiceModel GetReservation(int id)
         {
