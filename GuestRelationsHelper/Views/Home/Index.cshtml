@@ -19,12 +19,18 @@
         <div class="text-center">
             <div class="jumbotron">
                 <h1 class="display-4">Welcome to Vaya Beach Resort!</h1>
-                <p class="lead">Your Gueast Relations Team is here to make your vacation experience incredible!</p>
+                <p class="lead">Your Guest Relations Team is here to make your vacation experience incredible!</p>
                 <hr class="my-4">
                 <p class="lead">
                     <a asp-controller="Guests" asp-action="Register" asp-route-id="@userId" class="btn btn-info btn-lg" role="button">Please, enter your reservation details</a>
                 </p>
             </div>
+        </div>
+    }
+    else if (userIsGuest)
+    {
+        <div class="text-center">
+
         </div>
     }
 }

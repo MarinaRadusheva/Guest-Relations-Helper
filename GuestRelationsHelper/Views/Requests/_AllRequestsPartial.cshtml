@@ -1,0 +1,36 @@
+﻿@model IEnumerable<RequestServiceModel>
+
+@{
+    ViewBag.Title = "Requests Administration";
+}
+
+<br />
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Villa</th>
+            <th scope="col">Service</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td scope="col">@request.VillaNumber</td>
+                <td scope="col">@request.ServiceName</td>
+                <td scope="col">@request.Date?? "N/A"</td>
+                <td scope="col">@request.Time</td>
+                <td scope="col">@request.Status</td>
+                <td scope="col">
+                    <a asp-area="" asp-controller="Requests" asp-action="ChangeStatus" asp-route-id="@request.Id" class="btn btn-info float-right ml-3">@(request.Status=="Waiting" ? "InProgress" : "Done")</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

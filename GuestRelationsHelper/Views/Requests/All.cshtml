@@ -1,0 +1,13 @@
+﻿@model IEnumerable<RequestServiceModel>
+
+@{
+    ViewBag.Title = "All Requests";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<partial name="_AllRequestsPartial" model="@Model" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

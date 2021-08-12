@@ -43,6 +43,21 @@ namespace GuestRelationsHelper.Services.Guests
 
         }
 
+        public string GetGuestByUserId(string userId)
+        {
+            if (!this.IsGuest(userId))
+            {
+                return string.Empty;
+            }
+            var guestId = this.data.Guests.Where(x => x.UserId == userId).Select(x => x.Id).FirstOrDefault();
+            return guestId;
+        }
+
+        public int GetReservationId(string guestId)
+        {
+            return this.data.Guests.Where(x => x.Id == guestId).Select(x => x.ReservationId).FirstOrDefault();
+        }
+
         public bool IsGuest(string Id)
         {
             var guest = this.data.Guests.Where(x => x.UserId == Id).FirstOrDefault();
