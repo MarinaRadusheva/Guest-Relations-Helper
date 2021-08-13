@@ -14,6 +14,11 @@ namespace GuestRelationsHelper.Services.HotelServices
             this.data = data;
         }
 
+        public string GetNameById(int id)
+        {
+            return this.data.HotelServices.Where(x => x.Id == id).Select(x => x.Name).FirstOrDefault();
+        }
+
         public IEnumerable<SubCategoryServiceModel> GetSubCategoriesWithServices(int categoryId)
         {
             var subcategories = this.data.SubCategories.Where(x => x.MainServiceCategoryId == categoryId).Select(x => new SubCategoryServiceModel
@@ -25,7 +30,9 @@ namespace GuestRelationsHelper.Services.HotelServices
                     Id = s.Id,
                     Name = s.Name,
                     Price = s.Price,
-                }).ToList()
+                })
+                .OrderBy(s=>s.Name)
+                .ToList()
             }).ToList();
 
             return subcategories;

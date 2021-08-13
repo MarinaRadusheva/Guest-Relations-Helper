@@ -28,7 +28,7 @@
                         <td scope="col">@service.Name</td>
                         <td scope="col">@(service.Price!=null? service.Price.ToString() +" BGN" : "N/A")</td>
                         <td scope="col">
-                            <a asp-area="" asp-controller="Requests" asp-action="Add" asp-route-id="@service.Id" class="btn btn-info float-right ml-3">Select</a>
+                            <a asp-area="" asp-controller="Requests" asp-action="Add" asp-route-id=@service.Id class="btn btn-info float-right ml-3">Select</a>
                         </td>
                     </tr>
                 }

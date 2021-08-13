@@ -109,5 +109,10 @@ namespace GuestRelationsHelper.Services.Reservations
             this.data.SaveChanges();
             return true;
         }
+
+        public string GetVilla(int reservationId)
+        {
+            return this.data.Reservations.Where(x => x.Id == reservationId).Select(x => x.Villa.VillaNumber).FirstOrDefault();
+        }
     }
 }

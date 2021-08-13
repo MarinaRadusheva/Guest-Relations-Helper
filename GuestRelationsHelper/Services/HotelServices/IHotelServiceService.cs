@@ -6,5 +6,6 @@ namespace GuestRelationsHelper.Services.HotelServices
     public interface IHotelServiceService
     {
         IEnumerable<SubCategoryServiceModel> GetSubCategoriesWithServices(int categoryId);
+        string GetNameById(int id);
     }
 }
