@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SubCategoryServiceModel>
+
+@{
+    ViewBag.Title = "Hotel Services";
+}
+
+<h1>Please, select the desired service.</h1>
+<br />
+
+@foreach (var subcategory in Model)
+{
+    <div>
+        <h2>@subcategory.Name</h2>
+        <br />
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Service</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var service in subcategory.HotelServices)
+                {
+                    <tr>
+                        <td scope="col">@service.Name</td>
+                        <td scope="col">@(service.Price!=null? service.Price.ToString() +" BGN" : "N/A")</td>
+                        <td scope="col">
+                            <a asp-area="" asp-controller="Requests" asp-action="Add" asp-route-id="@service.Id" class="btn btn-info float-right ml-3">Select</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+}

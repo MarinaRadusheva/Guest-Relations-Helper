@@ -1,36 +1,11 @@
 ﻿@model IEnumerable<SubCategoryServiceModel>
 
-<h1>Please, select the desired service.</h1>
-<br />
+@{
+    ViewBag.Title = "Services";
+}
 
-@foreach (var subcategory in Model)
-{
-<div>
-    <h2>@subcategory.Name</h2>
-    <br />
+<partial name="_HotelServicesPartial" model="@Model" />
 
-    <table class="table table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Service</th>
-                <th scope="col">Price</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var service in subcategory.HotelServices)
-            {
-                <tr>
-                    <td scope="col">@service.Name</td>
-                    <td scope="col">@(service.Price!=null? service.Price.ToString() : "N/A")</td>
-                    <td scope="col">
-                        <a asp-area="" asp-controller="Requests" asp-action="Add" asp-route-id="@service.Id" class="btn btn-info float-right ml-3">Select</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-
-</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

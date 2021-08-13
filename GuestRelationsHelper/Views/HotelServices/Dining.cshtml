@@ -1,1 +1,12 @@
 ﻿
+@model IEnumerable<SubCategoryServiceModel>
+
+@{
+    ViewBag.Title = "Services";
+}
+
+<partial name="_HotelServicesPartial" model="@Model" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
