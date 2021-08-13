@@ -62,14 +62,17 @@ namespace GuestRelationsHelper.Controllers
         [Authorize(Roles = GuestRoleName)]
         public IActionResult Add(AddRequestServiceModel requestModel)
         {
+            var userId = this.User.Id();
+            var guestId = this.guests.GetGuestByUserId(userId);
+            var reservationId = this.guests.GetReservationId(guestId);
+            
+
             if (!ModelState.IsValid)
             {
                 return this.View(requestModel);
 
             }
-            var userId = this.User.Id();
-            var guestId = this.guests.GetGuestByUserId(userId);
-            var reservationId = this.guests.GetReservationId(guestId);
+            
             this.requests.Add(reservationId, requestModel.Date, requestModel.Time, requestModel.GuestsCount, requestModel.ServiceName, requestModel.Status);
 
             return RedirectToAction(nameof(All));
