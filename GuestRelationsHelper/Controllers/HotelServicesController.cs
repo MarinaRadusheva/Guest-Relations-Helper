@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using GuestRelationsHelper.Services.HotelServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using static GuestRelationsHelper.WebConstants;
@@ -8,17 +9,27 @@ namespace GuestRelationsHelper.Controllers
     [Authorize(Roles = GuestRoleName)]
     public class HotelServicesController : Controller
     {
-        public IActionResult Dining()
+        private readonly IHotelServiceService hotelServices;
+
+        public HotelServicesController(IHotelServiceService hotelServices)
         {
-            return View();
+            this.hotelServices = hotelServices;
         }
-        public IActionResult Transport()
+
+        public IActionResult Dining(int id)
         {
-            return View();
+            var subcategories = this.hotelServices.GetSubCategoriesWithServices(id);
+            return View(subcategories);
         }
-        public IActionResult Cleaning()
+        public IActionResult Transport(int id)
         {
-            return View();
+            var subcategories = this.hotelServices.GetSubCategoriesWithServices(id);
+            return View(subcategories);
+        }
+        public IActionResult Cleaning(int id)
+        {
+            var subcategories = this.hotelServices.GetSubCategoriesWithServices(id);
+            return View(subcategories);
         }
     }
 }
