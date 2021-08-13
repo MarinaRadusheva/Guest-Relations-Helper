@@ -16,13 +16,13 @@ namespace GuestRelationsHelper.Services.Requests.Models
         [Required]
         public string ServiceName { get; init; }
         [DataType(DataType.Date)]
-        public DateTime? Date { get; init; }
+        public DateTime? Date { get; set; }
 
         [DataType(DataType.Time)]
-        public DateTime Time { get; init; }
+        public DateTime Time { get; set; }
 
         [Required]
-        public string Status { get; init; }
+        public string Status { get; set; }
 
     }
 }

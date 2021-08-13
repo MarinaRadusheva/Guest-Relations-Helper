@@ -57,6 +57,7 @@ namespace GuestRelationsHelper.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(All));
         }
+
         [Authorize(Roles = AdministratorRoleName)]
         public IActionResult Edit(int id)
         {

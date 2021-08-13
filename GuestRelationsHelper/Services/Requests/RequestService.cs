@@ -1,4 +1,5 @@
 ﻿using GuestRelationsHelper.Data;
+using GuestRelationsHelper.Data.Models;
 using GuestRelationsHelper.Services.Requests.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,26 @@ namespace GuestRelationsHelper.Services.Requests
         {
             this.data = data;
         }
+
+        public int Add(int reservationId, DateTime? date, DateTime time, int guestsCount, string ServiceName, string status)
+        {
+            var request = new GuestRequest
+            {
+                ReservationId = reservationId,
+                HotelService = this.data.HotelServices.Where(x => x.Name == ServiceName).FirstOrDefault(),
+                Date = date,
+                Time = time,
+                GuestCount = guestsCount,
+                RequestStatus = Enum.Parse<RequestStatus>(status),
+                PaymentType = PaymentType.NotApplicable
+            };
+
+            this.data.GuestRequests.Add(request);
+            this.data.SaveChanges();
+
+            return request.Id;
+        }
+
         public IEnumerable<RequestServiceModel> All()
         {
             var requests = this.data.GuestRequests
