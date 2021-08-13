@@ -7,7 +7,7 @@ using GuestRelationsHelper.Services.Requests.Models;
 using GuestRelationsHelper.Services.Reservations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using System;
 using static GuestRelationsHelper.WebConstants;
 
 namespace GuestRelationsHelper.Controllers
@@ -50,6 +50,7 @@ namespace GuestRelationsHelper.Controllers
             {
                 ServiceId=Id,
                 ServiceName = serviceName,
+                Date=DateTime.UtcNow.Date,
                 Status = RequestStatus.Waiting.ToString(),
                 VillaNumber = villaNumber
             };
