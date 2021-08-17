@@ -7,5 +7,6 @@ namespace GuestRelationsHelper.Services.HotelServices
     {
         IEnumerable<SubCategoryServiceModel> GetSubCategoriesWithServices(int categoryId);
         string GetNameById(int id);
+        bool HasPrice(int id);
     }
 }

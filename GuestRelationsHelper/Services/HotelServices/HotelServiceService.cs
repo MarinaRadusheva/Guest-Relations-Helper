@@ -37,5 +37,15 @@ namespace GuestRelationsHelper.Services.HotelServices
 
             return subcategories;
         }
+
+        public bool HasPrice(int id)
+        {
+            
+            var hasPrice = this.data.HotelServices
+                .Where(x => x.Id == id)
+                .Select(x=>x.Price)
+                .FirstOrDefault()!=null;
+            return hasPrice;
+        }
     }
 }

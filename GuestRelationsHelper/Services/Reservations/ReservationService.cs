@@ -4,7 +4,6 @@ using GuestRelationsHelper.Services.Reservations.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace GuestRelationsHelper.Services.Reservations
 {

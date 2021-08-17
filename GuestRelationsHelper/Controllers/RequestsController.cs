@@ -1,4 +1,6 @@
-﻿using GuestRelationsHelper.Data.Models;
+﻿using System;
+using System.Collections.Generic;
+using GuestRelationsHelper.Data.Models;
 using GuestRelationsHelper.Infrastructure;
 using GuestRelationsHelper.Services.Guests;
 using GuestRelationsHelper.Services.HotelServices;
@@ -7,8 +9,9 @@ using GuestRelationsHelper.Services.Requests.Models;
 using GuestRelationsHelper.Services.Reservations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
+
 using static GuestRelationsHelper.WebConstants;
+using static GuestRelationsHelper.Data.HelperMethods;
 
 namespace GuestRelationsHelper.Controllers
 {
@@ -42,17 +45,19 @@ namespace GuestRelationsHelper.Controllers
         public IActionResult Add(int Id)
         {
             var serviceName = this.hotelServices.GetNameById(Id);
-            var userId = this.User.Id();
-            var guestId = this.guests.GetGuestByUserId(userId);
-            var reservationId = this.guests.GetReservationId(guestId);
-            var villaNumber = this.reservations.GetVilla(reservationId);
+            var hasPrice = this.hotelServices.HasPrice(Id);
+            var paymentTypes = new List<string>();
+            if (hasPrice)
+            {
+                paymentTypes = GetPaymentTypes();
+            }
             var request = new AddRequestServiceModel
             {
                 ServiceId=Id,
                 ServiceName = serviceName,
+                GuestsCount=1,
                 Date=DateTime.UtcNow.Date,
-                Status = RequestStatus.Waiting.ToString(),
-                VillaNumber = villaNumber
+                AllPaymentTypes=paymentTypes,
             };
 
             return View(request);
@@ -61,19 +66,17 @@ namespace GuestRelationsHelper.Controllers
         [HttpPost]
         [Authorize(Roles = GuestRoleName)]
         public IActionResult Add(AddRequestServiceModel requestModel)
-        {
-            var userId = this.User.Id();
-            var guestId = this.guests.GetGuestByUserId(userId);
-            var reservationId = this.guests.GetReservationId(guestId);
-            
-
+        {           
             if (!ModelState.IsValid)
             {
                 return this.View(requestModel);
 
             }
-            
-            this.requests.Add(reservationId, requestModel.Date, requestModel.Time, requestModel.GuestsCount, requestModel.ServiceName, requestModel.Status);
+            var userId = this.User.Id();
+            var guestId = this.guests.GetGuestByUserId(userId);
+            var reservationId = this.guests.GetReservationId(guestId);
+
+            this.requests.Add(reservationId, requestModel.ServiceId, requestModel.Date, requestModel.Time, requestModel.GuestsCount, requestModel.IsDaily, requestModel.PaymentType);
 
             return RedirectToAction(nameof(All));
         }

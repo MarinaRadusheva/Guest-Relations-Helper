@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-        <h1>@ViewBag.Title</h1>
+        <h1 class="heading-margin text-center">@ViewBag.Title</h1>
         <br />
         <h2 class="heading-margin text-center">Your Request Details</h2>
 
@@ -15,6 +15,10 @@
                 <label asp-for="Date">Date</label>
                 <input asp-for="Date" class="form-control" placeholder="@DateTime.UtcNow.Date">
                 <span asp-validation-for="Date" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsDaily">Every day of the stay</label>
+                <input asp-for="IsDaily" type="checkbox" />
             </div>
             <div class="form-group">
                 <label asp-for="Time">Time</label>
@@ -26,6 +30,25 @@
                 <input asp-for="GuestsCount" class="form-control" placeholder="1">
                 <span asp-validation-for="GuestsCount" class="small text-danger"></span>
             </div>
+            @if (Model.AllPaymentTypes.Any())
+            {
+                <div class="form-group">
+                    <label asp-for="PaymentType">How would you like to pay</label>
+                    <select asp-for="PaymentType" class="form-control">
+                        @foreach (var paymentType in Model.AllPaymentTypes)
+                        {
+                            <option value="@paymentType">@paymentType</option>
+                        }
+                    </select>
+                </div>
+            }
+            <div class="form-group">
+                <input type="hidden" asp-for="ServiceId" class="form-control" value="@Model.ServiceId">
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="ServiceName" class="form-control" value="@Model.ServiceName">
+            </div>
+
             <input class="btn btn-primary mt-3" type="submit" value="Proceed" />
         </form>
     </div>

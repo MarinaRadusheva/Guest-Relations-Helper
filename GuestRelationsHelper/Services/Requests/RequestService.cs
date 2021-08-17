@@ -15,17 +15,19 @@ namespace GuestRelationsHelper.Services.Requests
             this.data = data;
         }
 
-        public int Add(int reservationId, DateTime? date, DateTime time, int guestsCount, string ServiceName, string status)
+        public int Add(int reservationId, int serviceId, DateTime? date, DateTime time, int guestsCount, bool isDaily, string paymentType)
         {
+            var paymentNotApplicable = paymentType == null;
             var request = new GuestRequest
             {
                 ReservationId = reservationId,
-                HotelService = this.data.HotelServices.Where(x => x.Name == ServiceName).FirstOrDefault(),
+                HotelServiceId = serviceId,
                 Date = date,
+                IsDaily = isDaily,
                 Time = time,
                 GuestCount = guestsCount,
-                RequestStatus = Enum.Parse<RequestStatus>(status),
-                PaymentType = PaymentType.NotApplicable
+                RequestStatus = RequestStatus.Waiting,
+                PaymentType = paymentNotApplicable ? null : (PaymentType)Enum.Parse(typeof(PaymentType), paymentType)
             };
 
             this.data.GuestRequests.Add(request);

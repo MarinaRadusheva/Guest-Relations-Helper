@@ -14,5 +14,7 @@
         public const int PhoneMaxLength = 20;
         public const int PhoneMinLength = 6;
         public const int IdMaxLength = 40;
+        public const int GuestMinCount = 1;
+        public const int GuestMaxCount = 6;
     }
 }
