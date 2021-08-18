@@ -41,13 +41,30 @@
             </div>
         </div>
     }
+    else if (userIsAdmin)
+    {
+        <div class="text-center">
+            <div class="jumbotron">
+                <h1 class="display-4">Welcome back!</h1>
+                <h2 class="display-4">Your guests will be happy that you are here!</h2>
+                <hr class="my-4">
+                @if (ViewBag.PendingRequests == 0)
+                {
+                    <h4>@($"There are no unhandled requests.")</h4>
+                }
+                else
+                {
+                    <a class="nav-link text-info" asp-area="Admin" asp-controller="Requests" asp-action="All">@($"There are {ViewBag.PendingRequests} unhandled requests.")</a>
+                }
+            </div>
+        </div>
+    }
 }
-else
-{
-<div >
+
+<div>
     <img src=@Url.Content("~/vaya.jpg") class="col-md-12 " style="height:500px" />
 </div>
-    
-}
+
+
 
 

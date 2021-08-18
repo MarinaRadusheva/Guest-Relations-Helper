@@ -104,5 +104,13 @@ namespace GuestRelationsHelper.Services.Requests
                 return false;
             }
         }
+
+        public int PendingRequests()
+        {
+            return this.data.GuestRequests
+                .Where(x => x.RequestStatus == RequestStatus.Waiting || x.RequestStatus == RequestStatus.InProgress)
+                .Select(x => x)
+                .Count();
+        }
     }
 }

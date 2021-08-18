@@ -11,5 +11,6 @@ namespace GuestRelationsHelper.Services.Requests
         int Add(int reservationId, int serviceId, DateTime date, DateTime time, int guestsCount, bool isDaily, string paymentType);
         bool Cancel(int id);
         bool ChangeStatus(int id);
+        int PendingRequests();
     }
 }

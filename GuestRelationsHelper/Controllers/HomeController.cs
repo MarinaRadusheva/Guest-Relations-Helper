@@ -1,4 +1,5 @@
 ﻿using GuestRelationsHelper.Models;
+using GuestRelationsHelper.Services.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,15 +12,17 @@ namespace GuestRelationsHelper.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IRequestService requests;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IRequestService requests)
         {
-            _logger = logger;
+            this.requests = requests;
         }
 
         public IActionResult Index()
         {
+            var pendingRequests = this.requests.PendingRequests();
+            ViewBag.PendingRequests = pendingRequests;
             return View();
         }
 
