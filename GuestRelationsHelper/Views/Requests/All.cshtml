@@ -4,7 +4,11 @@
     ViewBag.Title = "My Requests";
 }
 
-<h1>@ViewBag.Title</h1>
+<nav>
+    <h1>@ViewBag.Title</h1>
+    <a href="/Home/Index" class="btn btn-info d-lg-inline-flex float-right"> Create New</a>
+</nav>
+<br />
 
 <partial name="_AllRequestsPartial" model="@Model" />
 

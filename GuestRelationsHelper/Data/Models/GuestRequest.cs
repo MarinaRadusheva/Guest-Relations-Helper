@@ -17,7 +17,7 @@ namespace GuestRelationsHelper.Data.Models
 
         public HotelService HotelService { get; init; }
         [DataType(DataType.Date)]
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
 
         public bool IsDaily { get; set; }
         

@@ -8,6 +8,7 @@ namespace GuestRelationsHelper.Services.Requests
     {
         IEnumerable<RequestServiceModel> All();
         IEnumerable<RequestServiceModel> All(int id);
-        int Add(int reservationId, int serviceId, DateTime? date, DateTime time, int guestsCount, bool isDaily, string paymentType);
+        int Add(int reservationId, int serviceId, DateTime date, DateTime time, int guestsCount, bool isDaily, string paymentType);
+        bool ChangeStatus(int id);
     }
 }

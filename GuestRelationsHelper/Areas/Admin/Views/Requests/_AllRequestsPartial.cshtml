@@ -23,8 +23,8 @@
             <tr>
                 <td scope="col">@request.VillaNumber</td>
                 <td scope="col">@request.ServiceName</td>
-                <td scope="col">@request.Date?? "N/A"</td>
-                <td scope="col">@request.Time</td>
+                <td scope="col">@(request.IsDaily ? "Daily" : request.Date.ToString("dd/MM/yyyy"))</td>
+                <td scope="col">@request.Time.ToString("t")</td>
                 <td scope="col">@request.Status</td>
                 <td scope="col">
                     <a asp-area="" asp-controller="Requests" asp-action="ChangeStatus" asp-route-id="@request.Id" class="btn btn-info float-right ml-3">@(request.Status=="Waiting" ? "InProgress" : "Done")</a>

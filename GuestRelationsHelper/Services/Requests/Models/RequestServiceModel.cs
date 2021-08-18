@@ -16,7 +16,8 @@ namespace GuestRelationsHelper.Services.Requests.Models
         [Required]
         public string ServiceName { get; init; }
         [DataType(DataType.Date)]
-        public DateTime? Date { get; set; }
+        public DateTime Date { get; set; }
+        public bool IsDaily { get; set; }
 
         [DataType(DataType.Time)]
         public DateTime Time { get; set; }

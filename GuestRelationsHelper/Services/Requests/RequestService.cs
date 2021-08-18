@@ -15,7 +15,7 @@ namespace GuestRelationsHelper.Services.Requests
             this.data = data;
         }
 
-        public int Add(int reservationId, int serviceId, DateTime? date, DateTime time, int guestsCount, bool isDaily, string paymentType)
+        public int Add(int reservationId, int serviceId, DateTime date, DateTime time, int guestsCount, bool isDaily, string paymentType)
         {
             var paymentNotApplicable = paymentType == null;
             var request = new GuestRequest
@@ -46,6 +46,7 @@ namespace GuestRelationsHelper.Services.Requests
                     ServiceName = x.HotelService.Name,
                     VillaNumber = x.Reservation.Villa.VillaNumber,
                     Date = x.Date,
+                    IsDaily=x.IsDaily,
                     Time = x.Time,
                     Status = x.RequestStatus.ToString()
                 }).ToList();
@@ -62,11 +63,24 @@ namespace GuestRelationsHelper.Services.Requests
                     ServiceName = x.HotelService.Name,
                     VillaNumber = x.Reservation.Villa.VillaNumber,
                     Date = x.Date,
+                    IsDaily=x.IsDaily,
                     Time = x.Time,
                     Status = x.RequestStatus.ToString()
                 })
                 .ToList();
             return requests;
+        }
+
+        public bool ChangeStatus(int id)
+        {
+            var requestToChange = this.data.GuestRequests.Find(id);
+            if (requestToChange.RequestStatus==RequestStatus.Cancelled)
+            {
+                return false;                
+            }
+            requestToChange.RequestStatus = RequestStatus.Cancelled;
+            this.data.SaveChanges();
+            return true;
         }
     }
 }

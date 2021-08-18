@@ -80,5 +80,12 @@ namespace GuestRelationsHelper.Controllers
 
             return RedirectToAction(nameof(All));
         }
+
+        [Authorize(Roles = GuestRoleName)]
+        public IActionResult ChangeStatus(int id)
+        {
+            this.requests.ChangeStatus(id);
+            return RedirectToAction(nameof(All));
+        }
     }
 }
