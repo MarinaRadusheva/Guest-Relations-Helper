@@ -16,7 +16,7 @@ namespace GuestRelationsHelper.Models.Guests
         [MinLength(PhoneMinLength)]
         public string PnoneNumber { get; set; }
         [Required]
-        [StringLength(ReservationPasswordLength, MinimumLength =ReservationPasswordLength)]
+        [StringLength(ReservationPasswordLength, MinimumLength = ReservationPasswordLength)]
         public string Password { get; set; }
 
     }

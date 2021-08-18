@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using GuestRelationsHelper.Data;
 
 namespace GuestRelationsHelper.Services.Requests.Models
 {
@@ -16,6 +14,7 @@ namespace GuestRelationsHelper.Services.Requests.Models
         [Required]
         public string ServiceName { get; init; }
         [DataType(DataType.Date)]
+        [MyDateValidatorAttribute(ErrorMessage = "Date cannot be earlier than today.")]
         public DateTime Date { get; set; }
         public bool IsDaily { get; set; }
 

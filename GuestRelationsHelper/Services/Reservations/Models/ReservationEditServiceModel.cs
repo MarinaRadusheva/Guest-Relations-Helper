@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
+using static GuestRelationsHelper.Data.DataConstants;
 
 namespace GuestRelationsHelper.Services.Reservations.Models
 {
@@ -13,6 +13,7 @@ namespace GuestRelationsHelper.Services.Reservations.Models
 
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
+        [Range(GuestMinCount, GuestMaxCount)]
         public int GuestsCount { get; set; }
 
     }
