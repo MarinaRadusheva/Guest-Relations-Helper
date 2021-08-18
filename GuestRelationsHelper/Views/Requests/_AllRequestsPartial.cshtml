@@ -27,7 +27,7 @@
                 <td scope="col">
                     @if (request.Status!="Cancelled")
                     {
-                    <a asp-area="" asp-controller="Requests" asp-action="ChangeStatus" asp-route-id="@request.Id" class="btn btn-info float-right ml-3">Cancel</a>
+                    <a asp-area="" asp-controller="Requests" asp-action="Cancel" asp-route-id="@request.Id" class="btn btn-info float-right ml-3">Cancel</a>
                     }
                     
                 </td>

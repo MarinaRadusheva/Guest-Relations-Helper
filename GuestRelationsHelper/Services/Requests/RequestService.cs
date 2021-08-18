@@ -71,16 +71,38 @@ namespace GuestRelationsHelper.Services.Requests
             return requests;
         }
 
+        public bool Cancel(int id)
+        {
+            var requestToCancel = this.data.GuestRequests.Find(id);
+            if (requestToCancel.RequestStatus==RequestStatus.Cancelled)
+            {
+                return false;
+                
+            }
+            requestToCancel.RequestStatus = RequestStatus.Cancelled;
+            this.data.SaveChanges();
+            return true;
+        }
+
         public bool ChangeStatus(int id)
         {
             var requestToChange = this.data.GuestRequests.Find(id);
-            if (requestToChange.RequestStatus==RequestStatus.Cancelled)
+            if (requestToChange.RequestStatus==RequestStatus.Waiting)
             {
-                return false;                
+                requestToChange.RequestStatus = RequestStatus.InProgress;
+                this.data.SaveChanges();
+                return true;
             }
-            requestToChange.RequestStatus = RequestStatus.Cancelled;
-            this.data.SaveChanges();
-            return true;
+            else if (requestToChange.RequestStatus==RequestStatus.InProgress)
+            {
+                requestToChange.RequestStatus = RequestStatus.Done;
+                this.data.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

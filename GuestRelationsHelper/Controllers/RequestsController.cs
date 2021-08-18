@@ -82,7 +82,7 @@ namespace GuestRelationsHelper.Controllers
         }
 
         [Authorize(Roles = GuestRoleName)]
-        public IActionResult ChangeStatus(int id)
+        public IActionResult Cancel(int id)
         {
             this.requests.ChangeStatus(id);
             return RedirectToAction(nameof(All));
