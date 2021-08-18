@@ -71,6 +71,23 @@ namespace GuestRelationsHelper.Services.Requests
             return requests;
         }
 
+        public IEnumerable<RequestServiceModel> Archived()
+        {
+            var requests = this.data.GuestRequests
+                .Where(x => x.Date <= DateTime.UtcNow.AddDays(-1))
+                .Select(x => new RequestServiceModel
+                {
+                    Id = x.Id,
+                    ServiceName = x.HotelService.Name,
+                    VillaNumber = x.Reservation.Villa.VillaNumber,
+                    Date = x.Date,
+                    IsDaily = x.IsDaily,
+                    Time = x.Time,
+                    Status = x.RequestStatus.ToString()
+                }).ToList();
+            return requests;
+        }
+
         public bool Cancel(int id)
         {
             var requestToCancel = this.data.GuestRequests.Find(id);

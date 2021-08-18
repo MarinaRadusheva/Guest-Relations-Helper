@@ -42,5 +42,12 @@ namespace GuestRelationsHelper.Areas.Admin.Controllers
             this.requests.ChangeStatus(Id);
             return RedirectToAction(nameof(All));
         }
+
+        [Authorize(Roles = AdministratorRoleName)]
+        public IActionResult Archive()
+        {
+            var allRequests = this.requests.Archived();
+            return this.View(nameof(All), allRequests);
+        }
     }
 }
